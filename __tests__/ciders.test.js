@@ -48,6 +48,17 @@ describe('backend-express-template routes', () => {
       },
     ]);
   });
+  it('#GET ciders/:id should return a single cider', async () => {
+    const resp = await request(app).get('/ciders/2');
+    expect(resp.status).toBe(200);
+    expect(resp.body).toEqual({
+      id: '2',
+      name: 'Ginja Ninja',
+      producer: '2 Towns Ciderhouse',
+      location: 'Corvallis, OR',
+      color: 'Straw Yellow',
+    });
+  });
   afterAll(() => {
     pool.end();
   });
