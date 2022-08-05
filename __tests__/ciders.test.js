@@ -59,6 +59,20 @@ describe('backend-express-template routes', () => {
       color: 'Straw Yellow',
     });
   });
+  it('#POST /ciders should create a new cider', async () => {
+    const newCider = {
+      name: 'BrightCider',
+      producer: '2 Towns Ciderhouse',
+      location: 'Corvallis, OR',
+      color: 'Honey Gold',
+    };
+    const resp = await request(app).post('/ciders').send(newCider);
+    expect(resp.status).toBe(200);
+    expect(resp.body).toEqual({
+      id: expect.any(String),
+      ...newCider,
+    });
+  });
   afterAll(() => {
     pool.end();
   });
