@@ -73,6 +73,12 @@ describe('backend-express-template routes', () => {
     expect(resp.status).toBe(200);
     expect(resp.body.genre).toBe('Dad Rock');
   });
+  it('#Delete /bands/:id should delete a band', async () => {
+    const resp = await request(app).delete('/bands/1');
+    expect(resp.status).toBe(200);
+    const bandsResp = await request(app).get('/bands/1');
+    expect(bandsResp.status).toBe(404);
+  });
   afterAll(() => {
     pool.end();
   });
