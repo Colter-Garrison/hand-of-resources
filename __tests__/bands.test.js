@@ -53,6 +53,19 @@ describe('backend-express-template routes', () => {
       genre: 'Classic Rock',
     });
   });
+  it('#POST /bands should create a new band', async () => {
+    const newBand = {
+      name: 'moe.',
+      members: 5,
+      genre: 'Jam Band',
+    };
+    const resp = await request(app).post('/bands').send(newBand);
+    expect(resp.status).toBe(200);
+    expect(resp.body).toEqual({
+      id: expect.any(String),
+      ...newBand,
+    });
+  });
   afterAll(() => {
     pool.end();
   });
