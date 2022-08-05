@@ -73,6 +73,13 @@ describe('backend-express-template routes', () => {
       ...newCider,
     });
   });
+  it('#PUT /ciders/:id should update an existing cider', async () => {
+    const resp = await request(app).put('/ciders/1').send({
+      color: 'Even Deeper Purple',
+    });
+    expect(resp.status).toBe(200);
+    expect(resp.body.color).toBe('Even Deeper Purple');
+  });
   afterAll(() => {
     pool.end();
   });
