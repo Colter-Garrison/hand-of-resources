@@ -80,6 +80,12 @@ describe('backend-express-template routes', () => {
     expect(resp.status).toBe(200);
     expect(resp.body.color).toBe('Even Deeper Purple');
   });
+  it('#Delete /ciders/:id should delete a cider', async () => {
+    const resp = await request(app).delete('/ciders/1');
+    expect(resp.status).toBe(200);
+    const ciderResp = await request(app).get('/ciders/1');
+    expect(ciderResp.status).toBe(404);
+  });
   afterAll(() => {
     pool.end();
   });
