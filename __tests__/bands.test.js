@@ -66,7 +66,7 @@ describe('backend-express-template routes', () => {
       ...newBand,
     });
   });
-  it('#PUT /bands/:id should update an existing cider', async () => {
+  it('#PUT /bands/:id should update an existing band', async () => {
     const resp = await request(app).put('/bands/1').send({
       genre: 'Dad Rock',
     });

@@ -37,7 +37,7 @@ describe('backend-express-template routes', () => {
       },
     ]);
   });
-  it('#GET snails/:id should return a single cider', async () => {
+  it('#GET snails/:id should return a single snail', async () => {
     const resp = await request(app).get('/snails/2');
     expect(resp.status).toBe(200);
     expect(resp.body).toEqual({
@@ -45,6 +45,19 @@ describe('backend-express-template routes', () => {
       name: 'Eastern Heath Snail',
       scientific_name: 'Xerolenta obvia',
       image: 'https://inaturalist-open-data.s3.amazonaws.com/photos/220049212/original.jpeg',
+    });
+  });
+  it('#POST /snails should create a new snail', async () => {
+    const newSnail = {
+      name: 'Slimy Boy',
+      scientific_name: 'Slimiest Snailiest',
+      image: 'https://static.wikia.nocookie.net/astroneer_gamepedia/images/1/18/Sylvie.png/revision/latest?cb=20220113110701',
+    };
+    const resp = await request(app).post('/snails').send(newSnail);
+    expect(resp.status).toBe(200);
+    expect(resp.body).toEqual({
+      id: expect.any(String),
+      ...newSnail,
     });
   });
   afterAll(() => {
