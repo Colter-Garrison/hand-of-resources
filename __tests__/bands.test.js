@@ -66,6 +66,13 @@ describe('backend-express-template routes', () => {
       ...newBand,
     });
   });
+  it('#PUT /bands/:id should update an existing cider', async () => {
+    const resp = await request(app).put('/bands/1').send({
+      genre: 'Dad Rock',
+    });
+    expect(resp.status).toBe(200);
+    expect(resp.body.genre).toBe('Dad Rock');
+  });
   afterAll(() => {
     pool.end();
   });
