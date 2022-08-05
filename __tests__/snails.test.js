@@ -60,6 +60,13 @@ describe('backend-express-template routes', () => {
       ...newSnail,
     });
   });
+  it('#PUT /snails/:id should update an existing snail', async () => {
+    const resp = await request(app).put('/snails/1').send({
+      name: 'So Slimy',
+    });
+    expect(resp.status).toBe(200);
+    expect(resp.body.name).toBe('So Slimy');
+  });
   afterAll(() => {
     pool.end();
   });
