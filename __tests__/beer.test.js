@@ -66,6 +66,20 @@ describe('backend-express-template routes', () => {
       location: 'Albany, OR'
     });
   });
+  it('#POST /beers should create a new beer', async () => {
+    const newBeer = {
+      name: 'RPM IPA',
+      style: 'IPA',
+      producer: 'Boneyard',
+      location: 'Bend, OR',
+    };
+    const resp = await request(app).post('/beers').send(newBeer);
+    expect(resp.status).toBe(200);
+    expect(resp.body).toEqual({
+      id: expect.any(String),
+      ...newBeer,
+    });
+  });
   afterAll(() => {
     pool.end();
   });
