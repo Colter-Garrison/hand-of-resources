@@ -65,19 +65,19 @@ INSERT INTO cider (name, producer, location, color) VALUES
 (
   'Premium Cider',
   'Ampleforth Abbey',
-  'Ampleforth, UK'
+  'Ampleforth, UK',
   'Deep Yellow'
 ),
 (
   'Sidra Natural',
   'Isastegi Sagardotegia',
-  'Tolosa, ESP'
+  'Tolosa, ESP',
   'Light Gold'
 );
 
 INSERT INTO bands (name, members, genre) VALUES
 (
-  'King Gizzard & the Lizard Wizard'
+  'King Gizzard & the Lizard Wizard',
   6,
   'Garage Rock'
 ),
@@ -163,3 +163,23 @@ INSERT INTO beer (name, style, producer, location) VALUES
 );
 
 INSERT INTO animals (name, type, color) VALUES
+(
+  'Momo',
+  'Cat',
+  'Black'
+),
+(
+  'Stu',
+  'Cat',
+  'White & Grey'
+),
+(
+  'Ghoul',
+  'Cat',
+  'Black'
+),
+(
+  'Ozujsko',
+  'Dog',
+  'White & Brown'
+);
