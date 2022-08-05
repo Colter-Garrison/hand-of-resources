@@ -37,6 +37,16 @@ describe('backend-express-template routes', () => {
       },
     ]);
   });
+  it('#GET snails/:id should return a single cider', async () => {
+    const resp = await request(app).get('/snails/2');
+    expect(resp.status).toBe(200);
+    expect(resp.body).toEqual({
+      id: '2',
+      name: 'Eastern Heath Snail',
+      scientific_name: 'Xerolenta obvia',
+      image: 'https://inaturalist-open-data.s3.amazonaws.com/photos/220049212/original.jpeg',
+    });
+  });
   afterAll(() => {
     pool.end();
   });
