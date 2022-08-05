@@ -55,6 +55,17 @@ describe('backend-express-template routes', () => {
       },
     ]);
   });
+  it('#GET beers/:id should return a single beer', async () => {
+    const resp = await request(app).get('/beers/2');
+    expect(resp.status).toBe(200);
+    expect(resp.body).toEqual({
+      id: '2',
+      name: 'El Guapo',
+      style: 'Blonde Ale',
+      producer: 'New Spring Brewing',
+      location: 'Albany, OR'
+    });
+  });
   afterAll(() => {
     pool.end();
   });
