@@ -43,6 +43,16 @@ describe('backend-express-template routes', () => {
       },
     ]);
   });
+  it('#GET bands/:id should return a single band', async () => {
+    const resp = await request(app).get('/bands/2');
+    expect(resp.status).toBe(200);
+    expect(resp.body).toEqual({
+      id: '2',
+      name: 'Led Zeppelin',
+      members: 4,
+      genre: 'Classic Rock',
+    });
+  });
   afterAll(() => {
     pool.end();
   });
