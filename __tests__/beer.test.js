@@ -80,6 +80,13 @@ describe('backend-express-template routes', () => {
       ...newBeer,
     });
   });
+  it('#PUT /beers/:id should update an existing beer', async () => {
+    const resp = await request(app).put('/beers/1').send({
+      style: 'this is beer',
+    });
+    expect(resp.status).toBe(200);
+    expect(resp.body.style).toBe('this is beer');
+  });
   afterAll(() => {
     pool.end();
   });
