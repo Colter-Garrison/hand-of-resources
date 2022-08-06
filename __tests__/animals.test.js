@@ -67,6 +67,12 @@ describe('backend-express-template routes', () => {
     expect(resp.status).toBe(200);
     expect(resp.body.name).toBe('Da Goodest Boi');
   });
+  it('#Delete /animals/:id should delete a animal', async () => {
+    const resp = await request(app).delete('/animals/1');
+    expect(resp.status).toBe(200);
+    const animalsResp = await request(app).get('/animals/1');
+    expect(animalsResp.status).toBe(404);
+  });
   afterAll(() => {
     pool.end();
   });
