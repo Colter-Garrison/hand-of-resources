@@ -37,7 +37,16 @@ describe('backend-express-template routes', () => {
       },
     ]);
   });
-
+  it('#GET animals/:id should return a single animal', async () => {
+    const resp = await request(app).get('/animals/2');
+    expect(resp.status).toBe(200);
+    expect(resp.body).toEqual({
+      id: '2',
+      name: 'Stu',
+      type: 'Cat',
+      color: 'White & Grey',
+    });
+  });
   afterAll(() => {
     pool.end();
   });
