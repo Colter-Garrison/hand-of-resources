@@ -47,6 +47,19 @@ describe('backend-express-template routes', () => {
       color: 'White & Grey',
     });
   });
+  it('#POST /animals should create a new animal', async () => {
+    const newAnimal = {
+      name: 'Mikko',
+      type: 'Dog',
+      color: 'Black, Brown & White',
+    };
+    const resp = await request(app).post('/animals').send(newAnimal);
+    expect(resp.status).toBe(200);
+    expect(resp.body).toEqual({
+      id: expect.any(String),
+      ...newAnimal,
+    });
+  });
   afterAll(() => {
     pool.end();
   });
